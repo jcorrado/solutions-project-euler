@@ -44,10 +44,12 @@
 ;;
 ;; By considering the terms in the Fibonacci sequence whose values do
 ;; not exceed four million, find the sum of the even-valued terms.
-(defn problem-2 [cnt]
-  (loop [curr 2 coll [1] num 1]
-    (if (= num cnt)
-      coll
-      (recur (+ curr (last coll)) (conj coll curr) (inc num)))))
+(defn problem-2 [max]
+  (reduce + (filter even?
+                    (loop [curr 2 coll [1]]
+                      (if (>= curr max)
+                        coll
+                        (recur (+ curr (last coll)) (conj coll curr)))))))
 
-(problem-2 10)
+(problem-2 4000000)
+;; => 4613732

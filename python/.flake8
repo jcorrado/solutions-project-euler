@@ -1,0 +1,5 @@
+# -*- mode: conf -*-
+
+[flake8]
+# E203 - whitespace before ':'
+ignore = E203

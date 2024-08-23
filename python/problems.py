@@ -142,5 +142,36 @@ def problem_6(n):
     return sum(r) ** 2 - sum([x * x for x in r])
 
 
-print(problem_6(100))
-# 25164150
+# print(problem_6(100))
+# # 25164150
+
+
+# Problem 7
+# 10001st Prime
+def problem_7(target_primes_cnt):
+    def is_prime(n):
+        if n <= 1:
+            return False
+        if n <= 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i <= n**0.5:
+            if n % i == 0 or n % (i + 2) == 0:
+                return False
+            i += 6
+        return True
+
+    prime_cnt = 0
+    i = 1
+    while True:
+        if is_prime(i):
+            prime_cnt += 1
+            if prime_cnt == target_primes_cnt:
+                return i
+        i += 1
+
+
+print(problem_7(10001))
+# 104743

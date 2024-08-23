@@ -114,5 +114,26 @@ def problem_4():
             return (n, factors)
 
 
-print(problem_4())
-# (906609, (913, 993))
+# print(problem_4())
+# # (906609, (913, 993))
+
+
+# Problem 5
+# Smallest Multiple
+# https://projecteuler.net/problem=5
+def problem_5(factor_cnt):
+    n = factor_cnt + 1
+    while True:
+        cnt = 0
+        for i in range(factor_cnt, 0, -1):
+            if n % i == 0:
+                cnt += 1
+        if cnt == factor_cnt:
+            return n
+        n += 1
+
+
+print(problem_5(20))
+# (venv) jereme@peanut python % time python problems.py
+# 232792560
+# python problems.py  93.56s user 0.08s system 99% cpu 1:34.12 total

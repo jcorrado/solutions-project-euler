@@ -18,7 +18,6 @@ def problem_1(n):
 
 # Problem 2
 # Even Fibonacci Numbers
-# https://projecteuler.net/problem=2
 
 
 def problem_2(n):
@@ -40,7 +39,6 @@ def problem_2(n):
 
 # Problem 3
 # Largest Prime Factor
-# https://projecteuler.net/problem=3
 
 
 def problem_3(n):
@@ -73,7 +71,6 @@ def problem_3(n):
 
 # Problem 4
 # Largest Palindrome Product
-# https://projecteuler.net/problem=4
 
 
 def problem_4():
@@ -120,7 +117,6 @@ def problem_4():
 
 # Problem 5
 # Smallest Multiple
-# https://projecteuler.net/problem=5
 def problem_5(factor_cnt):
     n = factor_cnt + 1
     while True:

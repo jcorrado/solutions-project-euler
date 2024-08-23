@@ -129,7 +129,18 @@ def problem_5(factor_cnt):
         n += 1
 
 
-print(problem_5(20))
-# (venv) jereme@peanut python % time python problems.py
-# 232792560
-# python problems.py  93.56s user 0.08s system 99% cpu 1:34.12 total
+# print(problem_5(20))
+# # (venv) jereme@peanut python % time python problems.py
+# # 232792560
+# # python problems.py  93.56s user 0.08s system 99% cpu 1:34.12 total
+
+
+# Problem 6
+# Sum Square Difference
+def problem_6(n):
+    r = range(1, n + 1)
+    return sum(r) ** 2 - sum([x * x for x in r])
+
+
+print(problem_6(100))
+# 25164150

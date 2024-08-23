@@ -1,3 +1,6 @@
+from functools import reduce
+import operator
+
 # Problem 1
 # Multiples of 3 or 5
 # https://projecteuler.net/problem=1
@@ -180,18 +183,11 @@ def problem_7(target_primes_cnt):
 # Problem 8
 # Largest Product in a Series
 def problem_8(n, k):
-    def multiply(arr):
-        product = 1
-        for x in arr:
-            product *= x
-        return product
-
     digits = [int(x) for x in str(n)]
-
     maximum = 0
     i, length = 0, len(digits)
     while k <= length:
-        maximum = max(maximum, multiply(digits[i:k]))
+        maximum = max(maximum, reduce(operator.mul, digits[i:k]))
         i += 1
         k += 1
     return maximum

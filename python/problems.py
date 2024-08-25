@@ -104,7 +104,7 @@ def problem_4():
                     return (i, quotient)
         return False
 
-    # Iterator from max palindrome looking for one that has two
+    # Iterate from max palindrome looking for one that has two
     # three-digit factors.
     palindromes = gen_palindromes()
     for i in range(len(palindromes) - 1, -1, -1):

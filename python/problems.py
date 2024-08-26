@@ -21,6 +21,21 @@ def is_prime(n):
     return True
 
 
+def sieve_of_eratosthenes(n):
+    primes = [True] * (n + 1)
+    for p in range(2, int(n**0.5 + 1)):
+        if primes[p]:
+            for i in range(p**2, n + 1, p):
+                primes[i] = False
+
+    result = []
+    for i in range(2, n + 1):
+        if primes[i]:
+            result.append(i)
+
+    return result
+
+
 # Problem 1
 # Multiples of 3 or 5
 # https://projecteuler.net/problem=1
@@ -220,3 +235,17 @@ etime = time.time()
 print(f"time: {etime - stime}")
 # 142913828922
 # time: 2.5714712142944336
+
+
+# Problem 10
+# Summation of Primes
+def problem_10(n):
+    return reduce(operator.add, sieve_of_eratosthenes(n))
+
+
+stime = time.time()
+print(problem_10(2000000))
+etime = time.time()
+print(f"time: {etime - stime}")
+# 142913828922
+# time: 0.08671998977661133

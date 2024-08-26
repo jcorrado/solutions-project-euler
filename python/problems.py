@@ -1,11 +1,10 @@
 from functools import reduce
 import operator
 
+
 # Problem 1
 # Multiples of 3 or 5
 # https://projecteuler.net/problem=1
-
-
 def problem_1(n):
     tot = 0
     for i in range(1, n):
@@ -19,10 +18,9 @@ def problem_1(n):
 # print(problem_1(1000))
 # # 233168
 
+
 # Problem 2
 # Even Fibonacci Numbers
-
-
 def problem_2(n):
     tot = 0
     i = 1
@@ -42,8 +40,6 @@ def problem_2(n):
 
 # Problem 3
 # Largest Prime Factor
-
-
 def problem_3(n):
     def is_prime(n):
         if n <= 1:
@@ -74,8 +70,6 @@ def problem_3(n):
 
 # Problem 4
 # Largest Palindrome Product
-
-
 def problem_4():
     # Generate palindromic numbers that are the product of two
     # three-digit numbers.

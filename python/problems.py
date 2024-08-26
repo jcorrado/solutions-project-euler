@@ -209,10 +209,8 @@ def problem_9(target):
         bc = target - a
         for b in range(1, (bc // 2) + 1):
             c = bc - b
-            # print(f"DEBUG: a: {a}, b: {b}, c: {c}")
             if not a < b < c:
                 continue
-
             if a**2 + b**2 == c**2:
                 return (a * b * c, a, b, c)
 

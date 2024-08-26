@@ -1,5 +1,6 @@
 from functools import reduce
 import operator
+import time
 
 
 # Problem 1
@@ -209,5 +210,37 @@ def problem_9(target):
                 return (a * b * c, a, b, c)
 
 
-problem_9(1000)
-# (31875000, 200, 375, 425)
+# problem_9(1000)
+# # (31875000, 200, 375, 425)
+
+
+# Problem 10
+# Summation of Primes
+def problem_10(n):
+    def is_prime(n):
+        if n <= 1:
+            return False
+        if n <= 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i <= n**0.5:
+            if n % i == 0 or n % (i + 2) == 0:
+                return False
+            i += 6
+        return True
+
+    tot = 0
+    for i in range(2, n):
+        if is_prime(i):
+            tot += i
+    return tot
+
+
+stime = time.time()
+print(problem_10(2000000))
+etime = time.time()
+print(f"time: {etime - stime}")
+# 142913828922
+# time: 2.5714712142944336

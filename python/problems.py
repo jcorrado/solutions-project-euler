@@ -3,6 +3,24 @@ import operator
 import time
 
 
+#
+# Common functions
+#
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i <= n**0.5:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+
 # Problem 1
 # Multiples of 3 or 5
 # https://projecteuler.net/problem=1
@@ -42,20 +60,6 @@ def problem_2(n):
 # Problem 3
 # Largest Prime Factor
 def problem_3(n):
-    def is_prime(n):
-        if n <= 1:
-            return False
-        if n <= 3:
-            return True
-        if n % 2 == 0 or n % 3 == 0:
-            return False
-        i = 5
-        while i <= n**0.5:
-            if n % i == 0 or n % (i + 2) == 0:
-                return False
-            i += 6
-        return True
-
     for i in range(2, n + 1):
         if n % i == 0:
             quotient = n // i
@@ -147,20 +151,6 @@ def problem_6(n):
 # Problem 7
 # 10001st Prime
 def problem_7(target_primes_cnt):
-    def is_prime(n):
-        if n <= 1:
-            return False
-        if n <= 3:
-            return True
-        if n % 2 == 0 or n % 3 == 0:
-            return False
-        i = 5
-        while i <= n**0.5:
-            if n % i == 0 or n % (i + 2) == 0:
-                return False
-            i += 6
-        return True
-
     prime_cnt = 0
     i = 1
     while True:
@@ -217,20 +207,6 @@ def problem_9(target):
 # Problem 10
 # Summation of Primes
 def problem_10(n):
-    def is_prime(n):
-        if n <= 1:
-            return False
-        if n <= 3:
-            return True
-        if n % 2 == 0 or n % 3 == 0:
-            return False
-        i = 5
-        while i <= n**0.5:
-            if n % i == 0 or n % (i + 2) == 0:
-                return False
-            i += 6
-        return True
-
     tot = 0
     for i in range(2, n):
         if is_prime(i):

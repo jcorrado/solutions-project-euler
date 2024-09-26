@@ -30,3 +30,33 @@
   (problem-2 4000000)
   ;; 4613732
   )
+
+;; Problem 3
+(defn prime? [n]
+  (cond
+    (<= n 1) false
+    (<= n 3) true
+    (or (= 0(mod n 2)) (= 0 (mod n 3))) false
+    :else (loop [i 5]
+            (if (> i (Math/sqrt n))
+              true
+              (if (or (= 0 (mod n i)) (= 0 (mod n (+ i 2))))
+                false
+                (recur (+ i 6)))))))
+
+(defn problem-3 [n]
+  (loop [i 2]
+    (when (<= i n)
+      (if (= 0 (mod n i))
+        (let [quotient (quot n i)]
+          (if (prime? quotient)
+            quotient
+            (recur (inc i))))
+        (recur (inc i))))))
+
+(comment
+  (problem-3 13195)
+  ;; 29
+  (problem-3 600851475143)
+  ;; 6857
+  )

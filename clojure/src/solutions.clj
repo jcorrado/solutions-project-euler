@@ -71,15 +71,34 @@
                        (for [j (range 10)]
                          (for [k (range 10)]
                            (compositor i j k))))))
+
           (combine-digits [ds]
-            (Integer/parseInt (apply str ds)))]
-    (concat (gen-palindrome (fn [i j k] (combine-digits [i j k j i])))
-            (gen-palindrome (fn [i j k] (combine-digits [i j k k j i]))))))
+            (Integer/parseInt (apply str ds)))
+
+          (get-three-digit-factors [n]
+            (letfn [(three-digit-complements [i]
+                      (when (= 0 (mod n i))
+                        (let [quotient (quot n i)]
+                          (when (<= 100 quotient 999)
+                            [i quotient]))))]
+              (loop [[i & rest] (range 100 1000)]
+                (when (some? i)
+                  (if-let [factors (three-digit-complements i)]
+                    [n factors]
+                    (recur rest))))))]
+    (->>
+     (concat (gen-palindrome (fn [i j k] (combine-digits [i j k j i])))
+             (gen-palindrome (fn [i j k] (combine-digits [i j k k j i]))))
+     (reverse)
+     (map get-three-digit-factors)
+     (filter some?)
+     ;;(first)
+     )))
 
 (comment
   (problem-4)
+  ;; [906609 [913 993]]
   )
-
 
 
 (comment

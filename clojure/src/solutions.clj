@@ -1,4 +1,5 @@
-(ns solutions)
+(ns solutions
+  (:require [clojure.math :as math]))
 
 ;; Problem 1
 (defn problem-1 [n]

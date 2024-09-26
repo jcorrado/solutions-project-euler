@@ -100,7 +100,6 @@
   ;; [906609 [913 993]]
   )
 
-
 (comment
   ;; I was curious which of these approaches would be faster.  I'm
   ;; surprised to learn that the string-based approach is faster... at
@@ -130,7 +129,4 @@
   ;; "Elapsed time: 0.058084 msecs"
   ;; "Elapsed time: 0.058292 msecs"
   ;; "Elapsed time: 0.037666 msecs"
-
-
-
   )

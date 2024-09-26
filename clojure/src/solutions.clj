@@ -130,3 +130,24 @@
   ;; "Elapsed time: 0.058292 msecs"
   ;; "Elapsed time: 0.037666 msecs"
   )
+
+;; Problem 5
+(defn problem-5-brute-force [n]
+  (letfn [(divisible-by-all? [x nums]
+            (= (count nums)
+               (->> nums
+                    (map #(mod x %))
+                    (filter zero?)
+                    (count))))]
+    (loop [i 21]
+      (if (divisible-by-all? i (range 1 (inc n)))
+        i
+        (recur (inc i))))))
+
+(comment
+  (problem-5-brute-force 10)
+  ;; 2520
+  (time (problem-5-brute-force 20))
+  ;; 232792560
+  ;; "Elapsed time: 108808.447625 msecs"
+  )

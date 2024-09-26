@@ -46,14 +46,16 @@
                 (recur (+ i 6)))))))
 
 (defn problem-3 [n]
-  (loop [i 2]
-    (when (<= i n)
-      (if (= 0 (mod n i))
-        (let [quotient (quot n i)]
-          (if (prime? quotient)
-            quotient
-            (recur (inc i))))
-        (recur (inc i))))))
+  (letfn [(prime-factor? [x]
+            (when (= 0 (mod n x))
+              (if-let [quotient (quot n x)]
+                (when (prime? quotient)
+                  quotient))))]
+    (loop [i 2]
+      (when (<= i n)
+        (if-let [max-prime (prime-factor? i)]
+          max-prime
+          (recur (inc i)))))))
 
 (comment
   (problem-3 13195)

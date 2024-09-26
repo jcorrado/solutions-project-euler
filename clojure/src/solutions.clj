@@ -63,3 +63,55 @@
   (problem-3 600851475143)
   ;; 6857
   )
+
+;; Problem 4
+(defn problem-4 []
+  (letfn [(gen-palindrome [compositor]
+            (flatten (for [i (range 1 10)]
+                       (for [j (range 10)]
+                         (for [k (range 10)]
+                           (compositor i j k))))))
+          (combine-digits [ds]
+            (Integer/parseInt (apply str ds)))]
+    (concat (gen-palindrome (fn [i j k] (combine-digits [i j k j i])))
+            (gen-palindrome (fn [i j k] (combine-digits [i j k k j i]))))))
+
+(comment
+  (problem-4)
+  )
+
+
+
+(comment
+  ;; I was curious which of these approaches would be faster.  I'm
+  ;; surprised to learn that the string-based approach is faster... at
+  ;; least in my simple tests.
+
+  (defn combine-digits-str [ds]
+    (Integer/parseInt (apply str ds)))
+
+  (defn combine-digits-math
+    [ds]
+    (loop [tot 0 ds ds]
+      (if (empty? ds)
+        tot
+        (recur (+ (* tot 10) (first ds))
+               (rest ds)))))
+
+  (time
+   (combine-digits-str (range 10)))
+  ;; 123456789
+  ;; "Elapsed time: 0.032792 msecs"
+  ;; "Elapsed time: 0.059667 msecs"
+  ;; "Elapsed time: 0.033167 msecs"
+
+  (time
+   (combine-digits-math (range 10)))
+  ;; 123456789
+  ;; "Elapsed time: 0.058084 msecs"
+  ;; "Elapsed time: 0.058292 msecs"
+  ;; "Elapsed time: 0.037666 msecs"
+
+
+
+  )

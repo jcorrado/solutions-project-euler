@@ -205,3 +205,19 @@
   ;; 232792560
   ;; "Elapsed time: 0.216833 msecs"
   )
+
+
+;;
+;; Problem 6
+;;
+(defn problem-6 [nums]
+  (let [sum (reduce + nums)
+        sum-of-square (reduce #(+ % (* %2 %2)) 0 nums)]
+    (- (* sum sum) sum-of-square)))
+
+(comment
+  (problem-6 (range 1 (inc 10)))
+  ;; 2640
+  (problem-6 (range 1 (inc 100)))
+  ;; 25164150
+  )

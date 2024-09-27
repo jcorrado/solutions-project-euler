@@ -151,3 +151,42 @@
   ;; 232792560
   ;; "Elapsed time: 108808.447625 msecs"
   )
+
+
+(defn prime-factors
+  "Return coll of prime factors. eg: 20 => [2 2 5]"
+  [n]
+  (loop [n n accum [] divisor 2]
+    (cond
+      (= n 1) accum
+      (zero? (mod n divisor)) (recur (/ n divisor) (conj accum divisor) divisor)
+      :else (recur n accum (inc divisor)))))
+
+(comment
+  (prime-factors 20)
+  ;; [2 2 5]
+  (prime-factors 60)
+  ;; [2 2 3 5]
+  (prime-factors 68985)
+  ;; [3 3 3 5 7 73]
+  )
+
+(defn problem-5 [nums]
+  (->> nums
+       (map prime-factors)
+       (map frequencies)
+       (apply merge-with max)
+       (reduce (fn [accum [base exp]]
+                 (* accum (int (math/pow base exp))))
+               1)))
+
+(comment
+  (problem-5 [20 60 68985])
+  ;; ({2 2, 5 1} {2 2, 3 1, 5 1} {3 3, 5 1, 7 1, 73 1})
+  ;; {2 2, 5 1, 3 3, 7 1, 73 1}
+  ;; 275940
+
+  (time (problem-5 (range 1 21)))
+  ;; 232792560
+  ;; "Elapsed time: 0.216833 msecs"
+  )

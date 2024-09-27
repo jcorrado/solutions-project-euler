@@ -221,3 +221,18 @@
   (problem-6 (range 1 (inc 100)))
   ;; 25164150
   )
+
+
+;;
+;; Problem 7
+;;
+(defn problem-7 [cnt]
+  (->> (range)
+       (filter prime?)
+       (take cnt)
+       last))
+
+(comment
+  (problem-7 10001)
+  ;; 104743
+  )

@@ -1,11 +1,14 @@
 (ns solutions
   (:require [clojure.math :as math]))
 
+
+;;
 ;; Problem 1
+;;
 (defn problem-1 [n]
   (->> (range 1 n)
-       (filter (fn [n] (or (= 0 (mod n 3))
-                          (= 0 (mod n 5)))))
+       (filter (fn [n] (or (zero? (mod n 3))
+                          (zero? (mod n 5)))))
        (reduce +)))
 
 (comment
@@ -15,7 +18,10 @@
   ;; 233168
   )
 
+
+;;
 ;; Problem 2
+;;
 (defn problem-2 [n]
   (letfn [(fib-until [n]
             (loop [accum '(1 0)]
@@ -32,22 +38,25 @@
   ;; 4613732
   )
 
+
+;;
 ;; Problem 3
+;;
 (defn prime? [n]
   (cond
     (<= n 1) false
     (<= n 3) true
-    (or (= 0(mod n 2)) (= 0 (mod n 3))) false
+    (or (zero? (mod n 2)) (zero? (mod n 3))) false
     :else (loop [i 5]
             (if (> i (Math/sqrt n))
               true
-              (if (or (= 0 (mod n i)) (= 0 (mod n (+ i 2))))
+              (if (or (zero? (mod n i)) (zero? (mod n (+ i 2))))
                 false
                 (recur (+ i 6)))))))
 
 (defn problem-3 [n]
   (letfn [(get-prime-factor [x]
-            (when (= 0 (mod n x))
+            (when (zero? (mod n x))
               (if-let [quotient (quot n x)]
                 (when (prime? quotient)
                   quotient))))]
@@ -64,7 +73,10 @@
   ;; 6857
   )
 
+
+;;
 ;; Problem 4
+;;
 (defn problem-4 []
   (letfn [(gen-palindrome [compositor]
             (flatten (for [i (range 1 10)]
@@ -131,7 +143,10 @@
   ;; "Elapsed time: 0.037666 msecs"
   )
 
+
+;;
 ;; Problem 5
+;;
 (defn problem-5-brute-force [n]
   (letfn [(divisible-by-all? [x nums]
             (= (count nums)

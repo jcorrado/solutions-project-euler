@@ -256,3 +256,22 @@
   (problem-8 n 13)
   ;; 23514624000
   )
+
+
+;;
+;; Problem 9
+;;
+(defn problem-9 [target]
+  (for [a (range 1 (inc target))
+        :let [bc (- target a)]
+        b (range 1 (inc (quot bc 2)))
+        :let [c (- bc b)]
+        :when (and (= target (+ a b c))
+                   (< a b c)
+                   (= (* c c) (+ (* a a) (* b b))))]
+    [(* a b c) a b c]))
+
+(comment
+  (problem-9 1000)
+  ;; ([31875000 200 375 425])
+  )

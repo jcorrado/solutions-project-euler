@@ -79,10 +79,10 @@
 ;;
 (defn problem-4 []
   (letfn [(gen-palindrome [compositor]
-            (flatten (for [i (range 1 10)]
-                       (for [j (range 10)]
-                         (for [k (range 10)]
-                           (compositor i j k))))))
+            (for [i (range 1 10)
+                  j (range 10)
+                  k (range 10)]
+              (compositor i j k)))
 
           (combine-digits [ds]
             (Integer/parseInt (apply str ds)))
@@ -104,8 +104,7 @@
      (reverse)
      (map get-three-digit-factors)
      (filter some?)
-     ;;(first)
-     )))
+     (first))))
 
 (comment
   (problem-4)

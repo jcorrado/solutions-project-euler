@@ -274,3 +274,39 @@
   (problem-9 1000)
   ;; ([31875000 200 375 425])
   )
+
+
+;;
+;; Problem 10
+;;
+(defn problem-10-brute-force [n]
+  (reduce + (filter prime? (range n))))
+
+(comment
+  (time (problem-10-brute-force (* 2 1000 1000)))
+  ;; 142913828922
+  ;; "Elapsed time: 277.839167 msecs"
+  )
+
+;; Some related reading
+;; https://cuddly-octo-palm-tree.com/posts/2021-12-05-sieve/
+
+(defn sieve-of-eratosthenes [n]
+  (clojure.set/difference
+   (set (range 2 (inc n)))
+   (loop [[p & candidates] (range 2 (-> (math/sqrt n) int inc))
+          composites #{}]
+     (if (nil? p)
+       composites
+       (if (contains? composites p)
+         (recur candidates composites)
+         (recur candidates (into composites (range (* p p) (inc n) p))))))))
+
+(defn problem-10 [n]
+  (reduce + (sieve-of-eratosthenes n)))
+
+(comment
+  (time (problem-10 (* 2 1000 1000)))
+  ;; 142913828922
+  ;; "Elapsed time: 1828.297416 msecs"
+  )
